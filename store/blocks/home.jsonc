@@ -1,15 +1,280 @@
 {
   "store.home": { 
-    "blocks": [
-      "rich-text"
+    "blocks": ["info-card#home", "search-result-layout.customQuery#jp", "responsive-layout.desktop#desktop",
+       "responsive-layout.mobile#mobile", "tab-layout"]
+  },
+   "info-card#home": {
+    "props": {
+      "isFullModeStyle": false,
+      "imageUrl": "https://maratonavirtual.s3.sa-east-1.amazonaws.com/6iibxhv7jzzdn2749uhoxub2fdjf?response-content-disposition=inline%3B%20filename%3D%22BANNER-WOOD.png%22%3B%20filename%2A%3DUTF-8%27%27BANNER-WOOD.png&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIRHGNFPZAGTZ7SUA%2F20210821%2Fsa-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210821T153236Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=ca44e9b18c47e0866f9c268b9fb9857bbb9f0bed3d155a21e7931abc2e9d4c84",
+      "imagePosition": "center"
+    }
+  },
+  "search-result-layout.customQuery#jp":{
+    "props":{
+      "querySchema":{
+        "skusFilter": "FIRST_AVAILABLE",
+        "simulationBehavior": "skip",
+        "maxItemsPerPage": "12"
+      }
+    },
+    "blocks":["search-result-layout.desktop#jp", "search-result-layout.mobile"]
+  },
+  "search-result-layout.desktop#jp":{
+    "children":["search-content#jp"],
+    "props":{
+      "preventRouteChange": true
+    }
+  },
+  "search-content#jp":{
+    "blocks":[
+      "gallery#jp", "not-found"
     ]
   },
-  "rich-text": { 
-    "props": { 
-      "text": "VTEX Store Framework",
-      "textAlignment": "CENTER",
+  // live do lp até os 35min e 34 - abaixo começa o sumario de produto - 3 dias trancado aqui
+
+  // outro teste com o sumario
+
+  "gallery#jp":{
+    "props":{
+      "layouts": [
+        {
+          "name": "grid",
+          "component": "GridSummary",
+          "itemsPerRow":{
+            "(min-width:1300px)": 4,
+            "desktop": 3,
+            "tablet": 3,
+            "phone": 2
+          }
+        },
+        {
+          "name": "list",
+          "component": "ListSummary",
+          "itemsPerRow": 1
+        }
+      ],
+      "ListSummary": "product-summary.shelf#jp",
+      "GridSummary": "product-summary.shelf#jp"
+    }
+  },
+  "product-summary.shelf#jp":{
+    "children": [
+      "product-summary-name",
+      "product-summary-image#jp",
+      "vtex.product-highlights@2.x:product-highlights"
+    ]
+  },
+  "product-summary-image#jp":{
+    "props":{
+      "showNavigationArrows": true,
+      "showPaginationDots": true
+    }
+  },
+  "vtex.product-highlights@2.x:product-highlights":{
+    "children":["product-highlight-text"]
+  },
+  "product-highlight-text":{
+    "props":{
+      "message": "{highlightName}",
+      "link": "/collection/{highlightId}"
+    }
+  },
+
+  // ----------------------
+
+//   "slider-layout#home": {
+//     "children": [
+//         "image#1", "image#2"
+//     ],
+//     "props": {
+//         "autoplay": {
+//             "timeout": 5000,
+//             "stopOnHover": true,
+//             "showNavigationArrows": "always",
+//             //"fullWidth": true,
+//             "centerMode": "center"
+//         }
+//     }
+// },
+// "image#1": {
+//     "props":{
+//         "src":"maratonavirtual.s3.sa-east-1.amazonaws.com/6iibxhv7jzzdn2749uhoxub2fdjf?response-content-disposition=inline%3B%20filename%3D%22BANNER-WOOD.png%22%3B%20filename%2A%3DUTF-8%27%27BANNER-WOOD.png&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIRHGNFPZAGTZ7SUA%2F20210821%2Fsa-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210821T153236Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=ca44e9b18c47e0866f9c268b9fb9857bbb9f0bed3d155a21e7931abc2e9d4c84",
+//         "isFullModeStyle": false,
+//         "maxWidth": "100%"
+//     }
+// },
+// "image#2": {
+//     "props":{
+//         "src":"https://maratonavirtual.s3.sa-east-1.amazonaws.com/du3k6akoks0u3xe322aypnaaal8e?response-content-disposition=inline%3B%20filename%3D%22W6S9NXIJ40I86DJI17S40123EYNM3J6CNF24M4Y04GGC9TBSXU.png%22%3B%20filename%2A%3DUTF-8%27%27W6S9NXIJ40I86DJI17S40123EYNM3J6CNF24M4Y04GGC9TBSXU.png&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIRHGNFPZAGTZ7SUA%2F20210821%2Fsa-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210821T190253Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=cb4e3ba753cc04f35d8e605e69d8c040b1737f4868730e2c5afe5e5f718d6f2e",
+//         "isFullModeStyle": false,
+//         "maxWidth": "100%"
+//     }
+// },
+//----------------------------------------------
+
+  "tab-layout": {
+    "children": [
+      "tab-list",
+      "tab-content"
+    ]
+  },
+  "tab-list": {
+    "children": [
+      "tab-list.item#1",
+      "tab-list.item#2"
+      ]
+  },
+  "tab-list.item#1": {
+    "props": {
+      "tabId": "majorAppliances",
+      "label": "Major Appliances",
+      "defaultActiveTab": true
+    }
+  },
+  "tab-list.item#2": {
+    "props": {
+      "tabId": "electronics",
+      "label": "Electronics"
+    }
+  },
+  "tab-content": {
+    "children": [
+      "tab-content.item#1",
+      "tab-content.item#2"
+      ]
+  },
+  "tab-content.item#1": {
+    "children": [
+      "rich-text#1"
+    ],
+    "props": {
+      "tabId": "majorAppliances"
+    }
+  },
+  "tab-content.item#2": {
+    "children": [
+      "rich-text#2"
+    ],
+    "props": {
+      "tabId": "electronics"
+    }
+  },
+  "rich-text#1": {
+    "props": {
+      "text": "Texto para Major Appliances",
       "textPosition": "CENTER",
-      "font": "t-heading-1"
+      "font": "t-heading-3"
+    }
+  },
+  "rich-text#2": {
+    "props": {
+      "text": "Texto para Electronics",
+      "textPosition": "CENTER",
+      "font": "t-heading-3"
+    }
+  },
+  "responsive-layout.desktop#desktop": {
+    "children": ["rich-text#desktop"]
+  },
+  "responsive-layout.mobile#mobile": {
+    "children": ["rich-text#mobile"]
+  },
+  "rich-text#desktop": {
+    "props": {
+      "text": "(I'm on desktop)",
+      "textPosition": "CENTER",
+      "textAlignment": "CENTER"
+    }
+  },
+  "rich-text#mobile": {
+    "props": {
+      "text": "#(I'm on mobile)",
+      "textPosition": "CENTER",
+      "textAlignment": "CENTER"
     }
   }
 }
+
+  // ---------------------------------------
+//   "flex-layout.row##1":{
+//     "children": [
+//       "flex-layout.col#1", "info-card#um"]
+//   },
+//   "flex-layout.col#1": {
+//     "children": ["info-card#dois"]
+//   },
+//   "info-card#um": {
+//     "props": {
+//       "imageUrl": "https://maratonavirtual.s3.sa-east-1.amazonaws.com/1627336500-01.png",
+//       "isFullModeStyle": false,
+//       "maxWidth": "100%"
+//     }
+//   },
+//   "info-card#dois":{
+//     "props": {
+//     "imageUrl": "https://maratonavirtual.s3.sa-east-1.amazonaws.com/1629377501-post-libra.png",
+//     "isFullModeStyle": false,
+//     "maxWidth": "100%"
+//   }
+// },
+//   "flex-layout.row##2": {
+//     "children": [ "flex-layout.col#2", "info-card#tres"]
+//   },
+//   "flex-layout.col#2": {
+//     "children": ["info-card#quatro"]
+//   },
+//   "info-card#tres": {
+//     "props": {
+//       "imageUrl": "https://maratonavirtual.s3.sa-east-1.amazonaws.com/1629219624-POST.png",
+//       "isFullModeStyle": false,
+//       "maxWidth": "100%"
+//     }
+//   },
+// "info-card#quatro": {
+//   "props": {
+//     "imageUrl": "https://maratonavirtual.s3.sa-east-1.amazonaws.com/1629141914-POST.png",
+//     "isFullModeStyle": false,
+//     "maxWidth": "100%"
+//   }
+// },
+// "flex-layout.row##3": {
+//   "children": [ "flex-layout.col#3", "info-card#cinco"]
+// },
+// "flex-layout.col#3": {
+//   "children": ["info-card#seis"]
+// },
+// "info-card#cinco": {
+//   "props": {
+//     "imageUrl": "https://maratonavirtual.s3.sa-east-1.amazonaws.com/1628715231-POST.png",
+//     "isFullModeStyle": false,
+//     "maxWidth": "100%"
+//   }
+// },
+// "info-card#seis": {
+//   "props": {
+//     "imageUrl": "https://maratonavirtual.s3.sa-east-1.amazonaws.com/1628610235-POST.png",
+//     "isFullModeStyle": false,
+//     "maxWidth": "100%"
+//   }
+// },
+// "flex-layout.row##4": {
+//   "children": [ "flex-layout.col#4", "info-card#sete"]
+// },
+// "flex-layout.col#4": {
+//   "children": ["info-card#oito"]
+// },
+// "info-card#sete": {
+//   "props": {
+//     "imageUrl": "https://maratonavirtual.s3.sa-east-1.amazonaws.com/1628112525-POST.png",
+//     "isFullModeStyle": false,
+//     "maxWidth": "100%"
+//   }
+// },
+// "info-card#oito": {
+//   "props": {
+//     "imageUrl": "https://maratonavirtual.s3.sa-east-1.amazonaws.com/1628270564-Post-frango%20%281%29.png",
+//     "isFullModeStyle": false,
+//     "maxWidth": "100%"
+//   }
+// }  
