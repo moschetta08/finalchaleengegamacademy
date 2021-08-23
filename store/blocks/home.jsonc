@@ -1,7 +1,7 @@
 {
   "store.home": { 
-    "blocks": ["info-card#home", "search-result-layout.customQuery#jp", "responsive-layout.desktop#desktop",
-       "responsive-layout.mobile#mobile", "tab-layout"]
+    "blocks": ["info-card#home", "search-result-layout.customQuery#jp", "tab-layout"]
+    //"responsive-layout.desktop#desktop", "responsive-layout.mobile#mobile",
   },
    "info-card#home": {
     "props": {
@@ -85,7 +85,8 @@
   },
   "add-to-cart-button#jp":{
     "props":{
-      "onClickBehavior": "go-to-product-page"
+      "onClickBehavior": "go-to-product-page",
+      "text": "Ver detalhes"
     }
   },
   "modal-trigger#jp":{
@@ -101,12 +102,18 @@
     },
     "modal-layout#jp": {
       "children": [
-        "rich-text#modal-content"
+        "video#jp"
       ]
     },
-    "rich-text#modal-content": {
+    "video#jp": {
       "props": {
-        "text": "Hello"
+        "width": "100%",
+        "height": "600px",
+        "loop": false,
+        "autoPlay": true,
+        "muted": false,
+        "src": "https://www.youtube.com/watch?v=wygFqZXMIco",
+        "blockClass": "videoEl"
       }
     }
   }
